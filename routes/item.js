@@ -18,4 +18,23 @@ router.post('/items', function(req, res) {
     });
 });
 
+router.delete('/items/:id', function(req,res){
+   
+    var id = req.params.id, item = '';
+    item = storage.delete(parseInt(id));
+    res.status(200).json(item); 
+
+});
+
+router.put('/items/:id', jsonParser, function(req,res){
+ 
+    if(!req.body) {
+        return res.sendStatus(400).send('Nope');
+    }
+ 
+    storage.update(parseInt(req.params.id), req.body.name);
+    res.status(200).json({'name': req.body.name}); 
+
+});
+
 module.exports = router;
