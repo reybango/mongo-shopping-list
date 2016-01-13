@@ -18,23 +18,20 @@ router.post('/items', function(req, res) {
     });
 });
 
+// Delete an existing item
 router.delete('/items/:id', function(req,res){
    
-    var id = req.params.id, item = '';
-    item = storage.delete(parseInt(id));
-    res.status(200).json(item); 
-
+    Item.findOneAndRemove({_id: req.params.id}, function(err, item) {
+        if (err || !item) {
+            console.error("Could not delete item", name);
+            mongoose.disconnect();
+            return;
+        }
+        console.log("Deleted item", item.name);
+        mongoose.disconnect();
+    });    
+    
 });
 
-router.put('/items/:id', jsonParser, function(req,res){
- 
-    if(!req.body) {
-        return res.sendStatus(400).send('Nope');
-    }
- 
-    storage.update(parseInt(req.params.id), req.body.name);
-    res.status(200).json({'name': req.body.name}); 
-
-});
 
 module.exports = router;
