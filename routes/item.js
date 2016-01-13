@@ -21,15 +21,16 @@ router.post('/items', function(req, res) {
 // Delete an existing item
 router.delete('/items/:id', function(req,res){
    
-    Item.delete({_id: req.params.id}, function(err, item) {
-        if (err || !item) {
+    Item.delete({_id: req.params.id}, function(item) {
+        if (!item) {
+            res.status(400).json(err); 
             console.error("Could not delete item");
             return;
         }
+        res.status(200).json(item); 
         console.log("Deleted item", item.name);
     });    
     
 });
-
 
 module.exports = router;

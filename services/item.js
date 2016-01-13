@@ -21,11 +21,11 @@ exports.list = function(callback, errback) {
 };
 
 exports.delete = function(data, callback, errback) {
-    Item.findOneAndRemove(data, function(err, items) {
+    Item.findOneAndRemove(data, function(err, item) {
         if (err) {
             errback(err);
             return;
         }
-        callback(items);
+        callback(item);
     });
 };
