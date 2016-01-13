@@ -20,3 +20,12 @@ exports.list = function(callback, errback) {
     });
 };
 
+exports.delete = function(data, callback, errback) {
+    Item.findOneAndRemove(data, function(err, items) {
+        if (err) {
+            errback(err);
+            return;
+        }
+        callback(items);
+    });
+};

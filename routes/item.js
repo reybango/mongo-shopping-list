@@ -21,14 +21,12 @@ router.post('/items', function(req, res) {
 // Delete an existing item
 router.delete('/items/:id', function(req,res){
    
-    Item.findOneAndRemove({_id: req.params.id}, function(err, item) {
+    Item.delete({_id: req.params.id}, function(err, item) {
         if (err || !item) {
-            console.error("Could not delete item", name);
-            mongoose.disconnect();
+            console.error("Could not delete item");
             return;
         }
         console.log("Deleted item", item.name);
-        mongoose.disconnect();
     });    
     
 });
