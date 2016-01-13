@@ -33,4 +33,19 @@ router.delete('/items/:id', function(req,res){
     
 });
 
+// Update an existing item
+router.put('/items/:id', function(req,res){
+   
+    Item.update( req.params.id, {'name': req.body.name}, function(item) {
+        if (!item) {
+            res.status(400).json(err); 
+            console.error("Could not update item");
+            return;
+        }
+        res.status(200).json(item); 
+        console.log("Updated item", item.name);
+    });    
+    
+});
+
 module.exports = router;

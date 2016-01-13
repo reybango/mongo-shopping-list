@@ -29,3 +29,13 @@ exports.delete = function(data, callback, errback) {
         callback(item);
     });
 };
+
+exports.update = function(id, data, callback, errback) {
+    Item.findByIdAndUpdate(id, data, function(err, item) {
+        if (err) {
+            errback(err);
+            return;
+        }
+        callback(item);
+    });
+};
