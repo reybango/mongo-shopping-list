@@ -7,6 +7,8 @@ router.get('/items', function(req, res) {
         res.json(items);
     }, function(err) {
         res.status(400).json(err);
+    }, function(err){
+        console.log("Error", err);
     });
 });
 
@@ -15,6 +17,8 @@ router.post('/items', function(req, res) {
         res.status(201).json(item);
     }, function(err) {
         res.status(400).json(err);
+    }, function(err){
+        console.log("Error", err);
     });
 });
 
@@ -29,6 +33,8 @@ router.delete('/items/:id', function(req,res){
         }
         res.status(200).json(item); 
         console.log("Deleted item", item.name);
+    }, function(err){
+        console.log("Error", err);
     });    
     
 });
@@ -44,6 +50,8 @@ router.put('/items/:id', function(req,res){
         }
         res.status(200).json(item); 
         console.log("Updated item", item.name);
+    }, function(err){
+        console.log("Error", err);
     });    
     
 });
