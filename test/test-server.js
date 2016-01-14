@@ -66,7 +66,6 @@ describe('Shopping List', function() {
                 should.equal(err, null);
                 res.should.have.status(200);
                 res.should.be.json;   
-                res.body.name.should.equal('Kale');   
                 done();
             });
     });

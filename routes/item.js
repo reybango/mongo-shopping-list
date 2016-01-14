@@ -25,8 +25,6 @@ router.post('/items', function(req, res) {
 // Delete an existing item
 router.delete('/items/:id', function(req,res){
    
-   console.log('Router: ' + req.params.id);
-   
     Item.delete({_id: req.params.id}, function(item) {
         if (!item) {
             res.status(400).json(err); 
