@@ -91,7 +91,7 @@ describe('Shopping List', function() {
 
 
 /*
-
+Old tests from the array-based shopping list
 describe('Shopping List', function() {
     it('should list items on GET', function(done) {
         chai.request(app)
