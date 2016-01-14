@@ -67,8 +67,16 @@ describe('Shopping List', function() {
 */
 
     it('should delete an item on DELETE', function(done) {
+        
+        var itemId = 0;
+        Item.findOne({'name:':'Tomatoes'}, function(err, item){
+           console.log(err); 
+           console.log(item);
+           // itemId = item._id; 
+        });
+        
         chai.request(app)
-            .delete('/items/1')
+            .delete('/items/' + itemId)
             .end(function(err, res){
                 should.equal(err, null);
                 res.should.have.status(200);
