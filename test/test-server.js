@@ -8,12 +8,18 @@ var seed = require('../db/seed');
 var should = chai.should();
 var app = server.app;
 
+var itemId = '';
+
 chai.use(chaiHttp);
 
 describe('Shopping List', function() {
     before(function(done) {
         seed.run(function() {
             done();
+        });
+        
+        Item.findOne({'name':'Tomatoes'}, function(err, item){
+           itemId = item._id; 
         });
     });
 
@@ -51,10 +57,10 @@ describe('Shopping List', function() {
                 done();
             });
     });
-/*
+
     it('should edit an item on PUT', function(done) {
         chai.request(app)
-            .put('/items/0')
+            .put('/items/' + itemId)
             .send({'name': 'Kale'})
             .end(function(err, res){
                 should.equal(err, null);
@@ -64,16 +70,8 @@ describe('Shopping List', function() {
                 done();
             });
     });
-*/
 
     it('should delete an item on DELETE', function(done) {
-        
-        var itemId = 0;
-        Item.findOne({'name:':'Tomatoes'}, function(err, item){
-           console.log(err); 
-           console.log(item);
-           // itemId = item._id; 
-        });
         
         chai.request(app)
             .delete('/items/' + itemId)

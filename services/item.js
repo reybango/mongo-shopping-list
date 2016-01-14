@@ -21,6 +21,8 @@ exports.list = function(callback, errback) {
 };
 
 exports.delete = function(data, callback, errback) {
+    console.log('Services: ' + data);
+    
     Item.findOneAndRemove(data, function(err, item) {
         if (err) {
             errback(err);
